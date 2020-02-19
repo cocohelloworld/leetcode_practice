@@ -1,6 +1,6 @@
 /*
 time: 52ms
-66.13%
+win:66.13%
 coded by jiaxin
 */
 class Solution {
