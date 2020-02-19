@@ -1,3 +1,8 @@
+/*
+time: 0ms
+win:100%
+coded by jiaxin
+*/
 class Solution {
  public:
   string replaceSpace(string s) {
