@@ -4,13 +4,16 @@
  *coded by jiaxin
  */
 class Solution {
-public:
-	int hammingWeight(uint32_t n) {
-		int sum = 0;
-		while (n) {
-			if (n % 2) { sum++; n -= 1; }
-			else n /= 2;
-		}
-		return sum;
-	}
+ public:
+  int hammingWeight(uint32_t n) {
+    int sum = 0;
+    while (n) {
+      if (n % 2) {
+        sum++;
+        n -= 1;
+      } else
+        n /= 2;
+    }
+    return sum;
+  }
 };
