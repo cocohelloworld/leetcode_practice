@@ -5,19 +5,53 @@
  */
 
 // @lc code=start
+bool finishSi, finishSj;
+bool compareWithOrder(string si, string sj, int ordi, int ordj)
+{
+
+    if(si.length() <= ordi)
+    {
+        ordi -= si.length();
+    }
+    if(sj.length() <= ordj)
+    {
+        ordj -= sj.length();
+    }
+    if(si[ordi] > sj[ordj]) return true;
+    if(si[ordi] < sj[ordj]) return false;
+    finishSi =(si.length() == ordi + 1);
+    finishSj =(sj.length() == ordj + 1);
+    if(finishSi && finishSj) return false;
+    //if(si(ordi) == sj(ordj))
+    return compareWithOrder(si, sj, ordi + 1, ordj + 1);
+
+}
+bool compare(int i, int j) 
+{
+    string si = to_string(i);
+    string sj = to_string(j);
+    finishSi = false;
+    finishSj = false;
+    return compareWithOrder(si, sj, 0, 0);
+}
+
+
 class Solution {
 public:
     string largestNumber(vector<int>& nums) {
-        //add every number to the same length
-        //e.g. 9 -> 99999 78 -> 78787 130 -> 13013 1657 -> 16571
-        //e.g. 9=99999 78 > 78787 (circle end at 7, 8>7) 130 < 13013 (circle end at 3, 0<3) 1657 > 16571 (circle end at 1, 6>1)
-        int length = -1;
-        for (int i = 0; i < nums.size();++i) 
+        string result = "";
+        bool isFirstNum = true;
+        std::sort(nums.begin(), nums.end(),compare);
+        for(int i = 0; i < nums.size(); i++)
         {
-            string strnum = nums[i];
-            length = strlen(strnum) > length ? strlen(strnum) : length;
+            if(nums[i]!= 0 || !isFirstNum)
+            {
+                isFirstNum = false;
+                result += to_string(nums[i]);
+            }
         }
-        
+        if(isFirstNum) result = "0";
+        return result;
     }
 };
 // @lc code=end
